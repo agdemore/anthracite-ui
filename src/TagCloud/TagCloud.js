@@ -6,7 +6,7 @@ import styled from "react-emotion";
 const Wrapper = styled('div')`
   display: flex;
   flex-direction: column;
-  border: 1px solid #000;
+  border: 1px solid #293133;
   padding: 10px 20px;
   font-family: 'sans-serif';
   
@@ -42,7 +42,7 @@ export default class TagCloud extends React.Component {
       <Wrapper>
         <div className='tag-cloud-title'>{this.props.title}</div>
         <div contentEditable='true' className='tag-cloud-input'>
-          {this.props.placeholder}
+
         </div>
         <ListWrapper>
           {this.props.children}

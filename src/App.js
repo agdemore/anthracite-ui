@@ -2,6 +2,7 @@ import React from "react"
 
 import Button from "./Button/Button";
 import TagCloud from "./TagCloud/TagCloud";
+import DropDownCards from "./DropDownCards/DropDownCards";
 
 export default class App extends React.Component {
 
@@ -15,6 +16,8 @@ export default class App extends React.Component {
           <div>b</div>
           <div>c</div>
         </TagCloud>
+
+        <DropDownCards/>
       </div>
     )
   }
