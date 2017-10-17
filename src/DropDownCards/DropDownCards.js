@@ -51,20 +51,22 @@ export default class DropDownCards extends React.Component {
   // }
 
   render() {
+
+    // const resultChildren = React.Children.map(children, (child) => {
+    //   if (child.type || child.type.displayName !== 'ddCardsItem')
+    //     throw new Error('Child component should be instance of ddcarditem');
+    //
+    //   return React.cloneElement(child, {
+    //
+    //   });
+    // });
+
     return (
       <CardsWrapper>
         <div className="main-card card" onClick={this.handleOpenCards}>
           { this.state.isOpen ? 'open' : 'close' }
         </div>
-        <div className="card">
-          a
-        </div>
-        <div className="card">
-          b
-        </div>
-        <div className="card">
-          c
-        </div>
+        {/*{ resultChildren }*/}
       </CardsWrapper>
     );
   }

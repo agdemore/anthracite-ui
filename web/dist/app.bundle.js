@@ -22161,11 +22161,17 @@ module.exports = function() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Button_Button__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TagCloud_TagCloud__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DropDownCards_DropDownCards__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__DropDownCards_DropDownCardsItem__ = __webpack_require__(40);
 
 
 
 
 
+
+
+const cardTheme = {
+  'background-color': 'black'
+};
 
 class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
 
@@ -22193,7 +22199,10 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
           "c"
         )
       ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__DropDownCards_DropDownCards__["a" /* default */], null)
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__DropDownCards_DropDownCards__["a" /* default */], null),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__DropDownCards_DropDownCardsItem__["a" /* default */], { title: "Card Example",
+        subTitle: "Some card component example"
+      })
     );
   }
 }
@@ -22431,6 +22440,16 @@ class DropDownCards extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Compon
   // }
 
   render() {
+
+    // const resultChildren = React.Children.map(children, (child) => {
+    //   if (child.type || child.type.displayName !== 'ddCardsItem')
+    //     throw new Error('Child component should be instance of ddcarditem');
+    //
+    //   return React.cloneElement(child, {
+    //
+    //   });
+    // });
+
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       CardsWrapper,
       null,
@@ -22438,26 +22457,415 @@ class DropDownCards extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Compon
         'div',
         { className: 'main-card card', onClick: this.handleOpenCards },
         this.state.isOpen ? 'open' : 'close'
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: 'card' },
-        'a'
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: 'card' },
-        'b'
-      ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
-        { className: 'card' },
-        'c'
       )
     );
   }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = DropDownCards;
+
+
+/***/ }),
+/* 40 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_emotion__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_emotion_theming__ = __webpack_require__(41);
+
+
+
+
+
+const CardWrapper = /*#__PURE__*/Object(__WEBPACK_IMPORTED_MODULE_2_react_emotion__["a" /* default */])('div')('display:flex;flex-direction:column;width:', props => props.theme.width, ';height:', props => props.theme.height, ';border-radius:3px;box-shadow:0 1px 2px rgba(0,0,0,.2);');
+
+class CardItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+
+    const { theme } = this.props;
+
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+      __WEBPACK_IMPORTED_MODULE_3_emotion_theming__["a" /* ThemeProvider */],
+      { theme: theme },
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        CardWrapper,
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'card-title' },
+          this.props.title
+        ),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'card-subtitle' },
+          this.props.subTitle
+        )
+      )
+    );
+  }
+}
+
+CardItem.propTypes = {
+  title: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string.isRequired,
+  subTitle: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
+  image: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
+  description: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.string,
+  actionButton: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.node,
+  cancelButton: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.node,
+  onActionButtonClick: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func,
+  onCancelButtonClick: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func,
+  theme: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.object
+};
+
+CardItem.defaultProps = {
+  title: 'Title',
+  theme: {
+    width: '300px',
+    height: '60px'
+  }
+};
+
+// CardItem.displayName = 'ddCardsItem';
+
+/* harmony default export */ __webpack_exports__["a"] = (CardItem);
+
+/***/ }),
+/* 41 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ThemeProvider; });
+/* unused harmony export withTheme */
+/* unused harmony export channel */
+/* unused harmony export contextTypes */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_prop_types__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics__);
+
+
+
+
+// https://github.com/styled-components/styled-components/blob/e05b3fe247e9d956bcde786cec376e32afb85bca/src/utils/create-broadcast.js
+var createBroadcast = function createBroadcast(initialState) {
+  var listeners = {};
+  var id = 0;
+  var state = initialState;
+
+  function publish(nextState) {
+    state = nextState;
+
+    for (var key in listeners) {
+      var listener = listeners[key];
+      if (listener === undefined) {
+        continue;
+      }
+
+      listener(state);
+    }
+  }
+
+  function subscribe(listener) {
+    var currentId = id;
+    listeners[currentId] = listener;
+    id += 1;
+    listener(state);
+    return currentId;
+  }
+
+  function unsubscribe(unsubID) {
+    listeners[unsubID] = undefined;
+  }
+
+  return { publish: publish, subscribe: subscribe, unsubscribe: unsubscribe };
+};
+
+var _contextTypes;
+
+var channel = '__EMOTION_THEMING__';
+
+var contextTypes = (_contextTypes = {}, _contextTypes[channel] = __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.object, _contextTypes);
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+
+
+
+
+
+
+
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+
+
+var inherits = function (subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      enumerable: false,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
+};
+
+
+
+
+
+
+
+
+
+
+
+var possibleConstructorReturn = function (self, call) {
+  if (!self) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return call && (typeof call === "object" || typeof call === "function") ? call : self;
+};
+
+// adapted from styled-components' ThemeProvider
+// https://github.com/styled-components/styled-components/blob/4503cab5b86aa9ef8314c5baa360a2fbb4812485/src/models/ThemeProvider.js
+
+var isPlainObject = function isPlainObject(test) {
+  return Object.prototype.toString.call(test) === '[object Object]';
+};
+
+var ThemeProvider = function (_Component) {
+  inherits(ThemeProvider, _Component);
+
+  function ThemeProvider() {
+    classCallCheck(this, ThemeProvider);
+
+    var _this = possibleConstructorReturn(this, _Component.call(this));
+
+    _this.getTheme = _this.getTheme.bind(_this);
+    return _this;
+  }
+
+  ThemeProvider.prototype.componentWillMount = function componentWillMount() {
+    var _this2 = this;
+
+    // If there is a ThemeProvider wrapper anywhere around this theme provider, merge this theme
+    // with the outer theme
+    if (this.context[channel] !== undefined) {
+      this.unsubscribeToOuterId = this.context[channel].subscribe(function (theme) {
+        _this2.outerTheme = theme;
+      });
+    }
+    this.broadcast = createBroadcast(this.getTheme(this.props.theme));
+  };
+
+  ThemeProvider.prototype.getChildContext = function getChildContext() {
+    var _ref;
+
+    return _ref = {}, _ref[channel] = {
+      subscribe: this.broadcast.subscribe,
+      unsubscribe: this.broadcast.unsubscribe
+    }, _ref;
+  };
+
+  ThemeProvider.prototype.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+    if (this.props.theme !== nextProps.theme) {
+      this.broadcast.publish(this.getTheme(nextProps.theme));
+    }
+  };
+
+  ThemeProvider.prototype.componentWillUnmount = function componentWillUnmount() {
+    var themeContext = this.context[channel];
+    if (themeContext !== undefined) {
+      themeContext.unsubscribe(this.unsubscribeToOuterId);
+    }
+  };
+
+  // Get the theme from the props, supporting both (outerTheme) => {} as well as object notation
+
+
+  ThemeProvider.prototype.getTheme = function getTheme(theme) {
+    if (typeof theme === 'function') {
+      var mergedTheme = theme(this.outerTheme);
+      if (!isPlainObject(mergedTheme)) {
+        throw new Error('[ThemeProvider] Please return an object from your theme function, i.e. theme={() => ({})}!');
+      }
+      return mergedTheme;
+    }
+    if (!isPlainObject(theme)) {
+      throw new Error('[ThemeProvider] Please make your theme prop a plain object');
+    }
+
+    if (this.outerTheme === undefined) {
+      return theme;
+    }
+
+    return _extends({}, this.outerTheme, theme);
+  };
+
+  ThemeProvider.prototype.render = function render() {
+    if (!this.props.children) {
+      return null;
+    }
+    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.Children.only(this.props.children);
+  };
+
+  return ThemeProvider;
+}(__WEBPACK_IMPORTED_MODULE_0_react__["Component"]);
+
+ThemeProvider.childContextTypes = contextTypes;
+ThemeProvider.contextTypes = contextTypes;
+
+var withTheme = function withTheme(Component$$1) {
+  var componentName = Component$$1.displayName || Component$$1.name || 'Component';
+
+  var WithTheme = function (_React$Component) {
+    inherits(WithTheme, _React$Component);
+
+    function WithTheme() {
+      classCallCheck(this, WithTheme);
+      return possibleConstructorReturn(this, _React$Component.apply(this, arguments));
+    }
+
+    WithTheme.prototype.componentWillMount = function componentWillMount() {
+      var _this2 = this;
+
+      var themeContext = this.context[channel];
+      if (themeContext === undefined) {
+        // eslint-disable-next-line no-console
+        console.error('[withTheme] Please use ThemeProvider to be able to use withTheme');
+        return;
+      }
+      this.unsubscribeId = themeContext.subscribe(function (theme) {
+        _this2.setState({ theme: theme });
+      });
+    };
+
+    WithTheme.prototype.componentWillUnmount = function componentWillUnmount() {
+      if (this.unsubscribeId !== -1) {
+        this.context[channel].unsubscribe(this.unsubscribeId);
+      }
+    };
+
+    WithTheme.prototype.render = function render() {
+      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(Component$$1, _extends({ theme: this.state.theme }, this.props));
+    };
+
+    return WithTheme;
+  }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+  WithTheme.displayName = 'WithTheme(' + componentName + ')';
+  WithTheme.contextTypes = contextTypes;
+
+  return __WEBPACK_IMPORTED_MODULE_2_hoist_non_react_statics___default()(WithTheme, Component$$1);
+};
+
+
+//# sourceMappingURL=index.es.js.map
+
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright 2015, Yahoo! Inc.
+ * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
+ */
+
+
+var REACT_STATICS = {
+    childContextTypes: true,
+    contextTypes: true,
+    defaultProps: true,
+    displayName: true,
+    getDefaultProps: true,
+    mixins: true,
+    propTypes: true,
+    type: true
+};
+
+var KNOWN_STATICS = {
+  name: true,
+  length: true,
+  prototype: true,
+  caller: true,
+  callee: true,
+  arguments: true,
+  arity: true
+};
+
+var defineProperty = Object.defineProperty;
+var getOwnPropertyNames = Object.getOwnPropertyNames;
+var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+var getPrototypeOf = Object.getPrototypeOf;
+var objectPrototype = getPrototypeOf && getPrototypeOf(Object);
+
+module.exports = function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
+    if (typeof sourceComponent !== 'string') { // don't hoist over string (html) components
+
+        if (objectPrototype) {
+            var inheritedComponent = getPrototypeOf(sourceComponent);
+            if (inheritedComponent && inheritedComponent !== objectPrototype) {
+                hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
+            }
+        }
+
+        var keys = getOwnPropertyNames(sourceComponent);
+
+        if (getOwnPropertySymbols) {
+            keys = keys.concat(getOwnPropertySymbols(sourceComponent));
+        }
+
+        for (var i = 0; i < keys.length; ++i) {
+            var key = keys[i];
+            if (!REACT_STATICS[key] && !KNOWN_STATICS[key] && (!blacklist || !blacklist[key])) {
+                var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
+                try { // Avoid failures from read-only properties
+                    defineProperty(targetComponent, key, descriptor);
+                } catch (e) {}
+            }
+        }
+
+        return targetComponent;
+    }
+
+    return targetComponent;
+};
 
 
 /***/ })
