@@ -23,9 +23,9 @@ export default class App extends React.Component {
         </TagCloud>
 
         <DropDownCards>
-          {/*<CardItem value='a'/>*/}
-          {/*<CardItem value='b'/>*/}
-          {/*<CardItem value='c'/>*/}
+          <CardItem title='a'/>
+          <CardItem title='b'/>
+          {/*<CardItem title='c'/>*/}
         </DropDownCards>
 
         <CardItem title='Card Example'
