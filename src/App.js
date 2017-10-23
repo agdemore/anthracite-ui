@@ -7,7 +7,9 @@ import CardItem from "./DropDownCards/DropDownCardsItem";
 
 
 const cardTheme = {
-  'background-color': 'black'
+  backgroundColor: 'black',
+  width: '100%',
+  height: '100px'
 };
 
 export default class App extends React.Component {
@@ -25,12 +27,16 @@ export default class App extends React.Component {
         <DropDownCards>
           <CardItem title='a'/>
           <CardItem title='b'/>
-          {/*<CardItem title='c'/>*/}
+          <CardItem title='c'/>
         </DropDownCards>
 
-        <CardItem title='Card Example'
-                  subTitle='Some card component example'
-        />
+        <DropDownCards>
+          <CardItem title='1'/>
+          <CardItem title='2'/>
+          <CardItem title='3'/>
+        </DropDownCards>
+
+        <div style={cardTheme}></div>
       </div>
     )
   }

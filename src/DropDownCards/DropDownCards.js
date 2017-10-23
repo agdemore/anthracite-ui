@@ -7,21 +7,34 @@ import styled from 'react-emotion';
 const CardsWrapper = styled('div')`
   display: flex;
   flex-direction: column;
+  position: relative;
+  margin-bottom: 10px;
   
   & .card {
-    width: 300px;
     height: 60px
     border-radius: 3px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
-    margin-bottom: 2px;
     cursor: pointer;
     padding: 12px;
-    z-index: 100;
-    background-color: #fff;
+    background-color: transparent;
+    position: relative;
   }
   
   & .main-card {
-     margin-bottom: 5px;
+    z-index: 5;
+    background-color: #fff;
+    transition-property: margin-bottom, height;
+    transition: .3s ease-in-out;
+  }
+  
+  & .other-card {
+    // margin-bottom: -74px;
+    z-index: 2
+    transition-property: margin-bottom, height;
+    transition: .3s ease-in-out;
+  }
+  & .other-card:nth-last-child(1) {
+    margin-bottom: 0px !important;
   }
 `;
 
@@ -33,13 +46,10 @@ export default class DropDownCards extends React.Component {
     };
 
     this.handleOpenCards = this.openCards.bind(this);
-    // this.modifyChildren = this.modifyChildren.bind(this);
   }
 
   componentDidMount() {
-    // React.Children.map(this.props.children, (child, i) => {
-    //   console.log(i, child.props.title);
-    // });
+
   }
 
   openCards() {
@@ -49,22 +59,25 @@ export default class DropDownCards extends React.Component {
   }
 
   render() {
-
     const resultChildren = React.Children.map(this.props.children, (child, i) => {
-      let offset = 84 * (i + 1);
 
       return React.cloneElement(child, {
-        offset: offset,
         parentIsOpen: this.state.isOpen
       });
     });
 
+    const divStl = {
+      marginBottom: this.state.isOpen? '10px' : '-74px'
+    };
+
     return (
       <CardsWrapper>
-        <div className="main-card card" onClick={this.handleOpenCards}>
-          { this.state.isOpen ? 'open' : 'close' }
+        <div className="cards-wrapper">
+          <div className='card main-card' style={divStl} onClick={this.handleOpenCards}>
+            { this.state.isOpen ? 'open' : 'close' }
+          </div>
+          {resultChildren}
         </div>
-        {resultChildren}
       </CardsWrapper>
     );
   }

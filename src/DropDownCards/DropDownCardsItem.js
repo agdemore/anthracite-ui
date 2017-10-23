@@ -12,7 +12,8 @@ const CardWrapper = styled('div')`
   box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
   padding: 12px;
   z-index: 50;
-  margin-bottom: 5px;
+  margin-bottom: -80px;
+  transition-property: margin-bottom, height;
   transition: .3s ease-in-out;
 `;
 
@@ -26,18 +27,19 @@ class CardItem extends React.Component {
     const { theme } = this.props;
 
     const transformStyle = {
-      transform: `translateY(-${this.props.parentIsOpen ? 0 : this.props.offset}px)`,
-      // 'box-shadow': `${this.props.parentIsOpen ? '0 1px 2px rgba(0, 0, 0, .2)' : 'none'}`,
+      marginBottom: this.props.parentIsOpen ? '10px' : '-74px'
     };
 
     return (
-      <ThemeProvider theme={theme}>
-        <CardWrapper style={transformStyle}>
+      <div className='card other-card' style={transformStyle}>
+      {/*<ThemeProvider theme={theme}>*/}
+        {/*<CardWrapper style={transformStyle}>*/}
           <div className="card-title">{ this.props.title }</div>
           <div className="card-subtitle">{ this.props.subTitle }</div>
           <span>{ this.props.offset }</span>
-        </CardWrapper>
-      </ThemeProvider>
+      {/*   </CardWrapper>*/}
+      {/* </ThemeProvider>*/}
+      </div>
     );
   }
 }
@@ -53,16 +55,14 @@ CardItem.propTypes = {
   onCancelButtonClick: PropTypes.func,
   theme: PropTypes.object,
   // indexInList: PropTypes.number.isRequired,
-  parentIsOpen: PropTypes.bool.isRequired,
-  offset: PropTypes.number.isRequired,
+  parentIsOpen: PropTypes.bool.isRequired
 };
 
 CardItem.defaultProps = {
   title: 'Title',
-  offset: 0,
   parentIsOpen: false,
   theme: {
-    width: '300px',
+    // width: '300px',
     height: '60px'
   }
 };

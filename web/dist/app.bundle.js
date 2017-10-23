@@ -22170,7 +22170,9 @@ module.exports = function() {
 
 
 const cardTheme = {
-  'background-color': 'black'
+  backgroundColor: 'black',
+  width: '100%',
+  height: '100px'
 };
 
 class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
@@ -22203,11 +22205,17 @@ class App extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
         __WEBPACK_IMPORTED_MODULE_3__DropDownCards_DropDownCards__["a" /* default */],
         null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__DropDownCards_DropDownCardsItem__["a" /* default */], { title: "a" }),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__DropDownCards_DropDownCardsItem__["a" /* default */], { title: "b" })
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__DropDownCards_DropDownCardsItem__["a" /* default */], { title: "b" }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__DropDownCards_DropDownCardsItem__["a" /* default */], { title: "c" })
       ),
-      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__DropDownCards_DropDownCardsItem__["a" /* default */], { title: "Card Example",
-        subTitle: "Some card component example"
-      })
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        __WEBPACK_IMPORTED_MODULE_3__DropDownCards_DropDownCards__["a" /* default */],
+        null,
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__DropDownCards_DropDownCardsItem__["a" /* default */], { title: "1" }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__DropDownCards_DropDownCardsItem__["a" /* default */], { title: "2" }),
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_4__DropDownCards_DropDownCardsItem__["a" /* default */], { title: "3" })
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", { style: cardTheme })
     );
   }
 }
@@ -22414,7 +22422,7 @@ TagCloud.defaultProps = {
 
 // import DropDownCardsItem from "./DropDownCardsItem";
 
-const CardsWrapper = /*#__PURE__*/Object(__WEBPACK_IMPORTED_MODULE_2_react_emotion__["a" /* default */])('div')('display:flex;flex-direction:column;& .card{width:300px;height:60px\n    border-radius:3px;box-shadow:0 1px 2px rgba(0,0,0,.2);margin-bottom:2px;cursor:pointer;padding:12px;z-index:100;background-color:#fff;}& .main-card{margin-bottom:5px;}');
+const CardsWrapper = /*#__PURE__*/Object(__WEBPACK_IMPORTED_MODULE_2_react_emotion__["a" /* default */])('div')('display:flex;flex-direction:column;position:relative;margin-bottom:10px;& .card{height:60px\n    border-radius:3px;box-shadow:0 1px 2px rgba(0,0,0,.2);cursor:pointer;padding:12px;background-color:transparent;position:relative;}& .main-card{z-index:5;background-color:#fff;transition-property:margin-bottom,height;transition:.3s ease-in-out;}& .other-card{// margin-bottom:-74px;z-index:2\n    transition-property:margin-bottom,height;transition:.3s ease-in-out;}& .other-card:nth-last-child(1){margin-bottom:0px !important;}');
 
 class DropDownCards extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
   constructor(props) {
@@ -22424,14 +22432,9 @@ class DropDownCards extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Compon
     };
 
     this.handleOpenCards = this.openCards.bind(this);
-    // this.modifyChildren = this.modifyChildren.bind(this);
   }
 
-  componentDidMount() {
-    // React.Children.map(this.props.children, (child, i) => {
-    //   console.log(i, child.props.title);
-    // });
-  }
+  componentDidMount() {}
 
   openCards() {
     this.setState(prevState => ({
@@ -22440,25 +22443,30 @@ class DropDownCards extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Compon
   }
 
   render() {
-
     const resultChildren = __WEBPACK_IMPORTED_MODULE_0_react___default.a.Children.map(this.props.children, (child, i) => {
-      let offset = 84 * (i + 1);
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.cloneElement(child, {
-        offset: offset,
         parentIsOpen: this.state.isOpen
       });
     });
+
+    const divStl = {
+      marginBottom: this.state.isOpen ? '10px' : '-74px'
+    };
 
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
       CardsWrapper,
       null,
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
-        { className: 'main-card card', onClick: this.handleOpenCards },
-        this.state.isOpen ? 'open' : 'close'
-      ),
-      resultChildren
+        { className: 'cards-wrapper' },
+        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+          'div',
+          { className: 'card main-card', style: divStl, onClick: this.handleOpenCards },
+          this.state.isOpen ? 'open' : 'close'
+        ),
+        resultChildren
+      )
     );
   }
 }
@@ -22483,7 +22491,7 @@ DropDownCards.propTypes = {};
 
 
 
-const CardWrapper = /*#__PURE__*/Object(__WEBPACK_IMPORTED_MODULE_2_react_emotion__["a" /* default */])('div')('display:flex;flex-direction:column;width:', props => props.theme.width, ';height:', props => props.theme.height, ';border-radius:3px;box-shadow:0 1px 2px rgba(0,0,0,.2);padding:12px;z-index:50;margin-bottom:5px;transition:.3s ease-in-out;');
+const CardWrapper = /*#__PURE__*/Object(__WEBPACK_IMPORTED_MODULE_2_react_emotion__["a" /* default */])('div')('display:flex;flex-direction:column;width:', props => props.theme.width, ';height:', props => props.theme.height, ';border-radius:3px;box-shadow:0 1px 2px rgba(0,0,0,.2);padding:12px;z-index:50;margin-bottom:-80px;transition-property:margin-bottom,height;transition:.3s ease-in-out;');
 
 class CardItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
   constructor(props) {
@@ -22495,31 +22503,26 @@ class CardItem extends __WEBPACK_IMPORTED_MODULE_0_react___default.a.Component {
     const { theme } = this.props;
 
     const transformStyle = {
-      transform: `translateY(-${this.props.parentIsOpen ? 0 : this.props.offset}px)`
-      // 'box-shadow': `${this.props.parentIsOpen ? '0 1px 2px rgba(0, 0, 0, .2)' : 'none'}`,
+      marginBottom: this.props.parentIsOpen ? '10px' : '-74px'
     };
 
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-      __WEBPACK_IMPORTED_MODULE_3_emotion_theming__["a" /* ThemeProvider */],
-      { theme: theme },
+      'div',
+      { className: 'card other-card', style: transformStyle },
       __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        CardWrapper,
-        { style: transformStyle },
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'div',
-          { className: 'card-title' },
-          this.props.title
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'div',
-          { className: 'card-subtitle' },
-          this.props.subTitle
-        ),
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'span',
-          null,
-          this.props.offset
-        )
+        'div',
+        { className: 'card-title' },
+        this.props.title
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'div',
+        { className: 'card-subtitle' },
+        this.props.subTitle
+      ),
+      __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+        'span',
+        null,
+        this.props.offset
       )
     );
   }
@@ -22536,16 +22539,14 @@ CardItem.propTypes = {
   onCancelButtonClick: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.func,
   theme: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.object,
   // indexInList: PropTypes.number.isRequired,
-  parentIsOpen: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool.isRequired,
-  offset: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.number.isRequired
+  parentIsOpen: __WEBPACK_IMPORTED_MODULE_1_prop_types___default.a.bool.isRequired
 };
 
 CardItem.defaultProps = {
   title: 'Title',
-  offset: 0,
   parentIsOpen: false,
   theme: {
-    width: '300px',
+    // width: '300px',
     height: '60px'
   }
 };
@@ -22559,7 +22560,7 @@ CardItem.defaultProps = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ThemeProvider; });
+/* unused harmony export ThemeProvider */
 /* unused harmony export withTheme */
 /* unused harmony export channel */
 /* unused harmony export contextTypes */
